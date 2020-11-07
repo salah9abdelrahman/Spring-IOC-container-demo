@@ -15,10 +15,15 @@ public class AroundMainWithLoggerDemo {
         TrafficFortuneService trafficFortuneService =
                 context.getBean("trafficFortuneService", TrafficFortuneService.class);
 
-        logger.info("\nMain App AroundMainDemo");
+        logger.info("Main App AroundMainDemo");
         logger.info("getFortune");
-        String fortune = trafficFortuneService.getFortune();
-        logger.info("\nMy Fortune is " + fortune);
+        try {
+
+            String fortune = trafficFortuneService.getFortune(true);
+            logger.info("My Fortune is " + fortune);
+        } catch (RuntimeException e){
+
+        }
         logger.info("Finished");
         context.close();
     }

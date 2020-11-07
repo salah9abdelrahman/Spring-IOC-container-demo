@@ -14,7 +14,7 @@ public class AroundMainDemo {
 
         System.out.println("\nMain App AroundMainDemo");
         System.out.println("getFortune");
-        String fortune = trafficFortuneService.getFortune();
+        String fortune = trafficFortuneService.getFortune(false);
         System.out.println("\nMy Fortune is " + fortune);
         System.out.println("Finished");
         context.close();

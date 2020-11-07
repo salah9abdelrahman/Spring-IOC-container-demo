@@ -41,14 +41,14 @@ public class MyLoggingAspect {
         String method = joinPoint.getSignature().toString();
         logger.info("executing @AfterReturning a method: " + method);
 
-        if(!accounts.isEmpty()){
+        if (!accounts.isEmpty()) {
             accounts.get(0).setName("AHAHAHAHAHA!");
         }
         logger.info("result: " + accounts);
     }
 
     @AfterThrowing(pointcut = "aopdemo.dao.aspect.aopDeclarations.findAccounts()", throwing = "exc")
-    public void afterThrowingFindAccount(JoinPoint joinPoint, Throwable exc){
+    public void afterThrowingFindAccount(JoinPoint joinPoint, Throwable exc) {
         logger.info("@AfterThrowing -> signature:" + joinPoint.getSignature());
         logger.info("@AfterThrowing -> exec:" + exc);
 
@@ -56,16 +56,24 @@ public class MyLoggingAspect {
 
 
     @After("aopdemo.dao.aspect.aopDeclarations.findAccounts()")
-    public void afterFindAccountsAdvice(JoinPoint joinPoint){
+    public void afterFindAccountsAdvice(JoinPoint joinPoint) {
         String method = joinPoint.getSignature().toString();
         logger.info("@after-FindAccountsAdvice: " + method);
     }
 
     @Around("aopdemo.dao.aspect.aopDeclarations.getTrafficFortune()")
-    public Object aroundTrafficGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+    public Object aroundTrafficGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         String method = proceedingJoinPoint.getSignature().toString();
         long begin = System.currentTimeMillis();
-        Object result = proceedingJoinPoint.proceed();
+        Object result = null;
+        try {
+        result = proceedingJoinPoint.proceed();
+
+        }
+        catch (Exception e){
+            logger.warning(e.getMessage());
+            throw e;
+        }
         long duration = System.currentTimeMillis() - begin;
         logger.info("\nduration: " + duration);
         return result;
