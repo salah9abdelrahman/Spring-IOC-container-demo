@@ -22,4 +22,7 @@ public class aopDeclarations {
 
     @Pointcut("execution (* aopdemo.dao.AccountDAO.findAccounts(..))")
     public void findAccounts(){}
+
+    @Pointcut("execution (* aopdemo.dao.services.TrafficFortuneService.getFortune(..))")
+    public void getTrafficFortune(){}
 }
