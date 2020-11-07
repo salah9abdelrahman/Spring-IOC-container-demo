@@ -34,9 +34,14 @@ public class AccountDAO {
         this.serviceCode = serviceCode;
     }
 
-    public List<Account> findAccounts(){
+    public List<Account> findAccounts(boolean tripWire){
+        if(tripWire){
+            throw new RuntimeException("No soup for you :)");
+        }
         return Arrays.asList(new Account("bla", "blue"),
                 new Account("said", "ahmed"),
                 new Account("Medhat", "Abdo"));
     }
+
+
 }

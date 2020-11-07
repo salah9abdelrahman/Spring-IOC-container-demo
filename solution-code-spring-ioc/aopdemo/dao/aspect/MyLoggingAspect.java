@@ -3,6 +3,7 @@ package aopdemo.dao.aspect;
 import aopdemo.dao.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -42,6 +43,13 @@ public class MyLoggingAspect {
             accounts.get(0).setName("AHAHAHAHAHA!");
         }
         System.out.println("result: " + accounts);
+    }
+
+    @AfterThrowing(pointcut = "aopdemo.dao.aspect.aopDeclarations.findAccounts()", throwing = "exc")
+    public void afterThrowingFindAccount(JoinPoint joinPoint, Throwable exc){
+        System.out.println("@AfterThrowing -> signature:" + joinPoint.getSignature());
+        System.out.println("@AfterThrowing -> exec:" + exc);
+
     }
 
 
