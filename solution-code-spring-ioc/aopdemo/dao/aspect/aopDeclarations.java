@@ -16,4 +16,10 @@ public class aopDeclarations {
 
     @Pointcut("forDaoPackage() && !(getter() || setter())")
     public void forDaoPackageNotGetterAndSetter(){}
+
+    @Pointcut("execution (* aopdemo.dao.AccountDAO.addAccount(..))")
+    public void addAccount(){}
+
+    @Pointcut("execution (* aopdemo.dao.AccountDAO.findAccounts(..))")
+    public void findAccounts(){}
 }

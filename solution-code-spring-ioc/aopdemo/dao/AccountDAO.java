@@ -2,6 +2,9 @@ package aopdemo.dao;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Component
 public class AccountDAO {
     private String name;
@@ -29,5 +32,11 @@ public class AccountDAO {
     public void setServiceCode(String serviceCode) {
         System.out.println("setServiceCode");
         this.serviceCode = serviceCode;
+    }
+
+    public List<Account> findAccounts(){
+        return Arrays.asList(new Account("bla", "blue"),
+                new Account("said", "ahmed"),
+                new Account("Medhat", "Abdo"));
     }
 }
